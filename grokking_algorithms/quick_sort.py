@@ -1,3 +1,5 @@
+import random as rnd
+
 def modulus(a, b): # == % operator
     div = a / b
     floor = int(div)
@@ -55,11 +57,21 @@ def rec_binary_search(arr, target, left=None, right=None):
     return rec_binary_search(arr, target, left, right)
 
 
+def quick_sort(arr):
+    if len(arr) < 2: return arr
+
+    pivot = arr[rnd.randint(0, len(arr)-1)]
+    less = [i for i in arr[1:] if i <= pivot]
+    greater = [i for i in arr[1:] if i > pivot]
+
+    return quick_sort(less) + [pivot] + quick_sort(greater)
+
+
 if __name__ == '__main__':
-    arr = [i for i in range(1, 22, 2)]
-    sm = rec_sum(arr)
+    arr = [rnd.randint(1, 100) for i in range(100)]
     print("Array:", arr)
-    print("Array sum:", sm)
-    print("Array len:", rec_count(arr))
-    print("Array max:", rec_max(arr))
+    # print("Array sum:", rec_sum(arr))
+    # print("Array len:", rec_count(arr))
+    # print("Array max:", rec_max(arr))
     print("Array binary search:", rec_binary_search(arr, 7))
+    print("Array quicksort:", quick_sort(arr))
