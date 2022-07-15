@@ -1,26 +1,4 @@
-# Check better solution and rework for it
-
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-    def __str__(self):
-        return f'(val:{self.val}, next:{self.next})'
-
-    def __repr__(self):
-        return f'(val:{self.val}, next:{self.next})'
-
-
-def make_linked_list(head):
-    cur_node = head
-
-    for i in range(1, 5):
-        cur_node.next = ListNode(val=i + 1)
-        cur_node = cur_node.next
-
-    return head
+from linked_list.utils import ListNode, make_linked_list
 
 
 # My old recursive way
@@ -53,17 +31,7 @@ def rec_reverse_list(head):
     head.next = None
 
     return new_head
-''' [1, 2, 3, 4, 5]
-new_head = [2, 3, 4, 5]
-new_head = [3, 4, 5]
-new_head = [4, 5]
-new_head = [5]
-new_head = [] -> returns None
 
-
-
-
-'''
 
 def iter_reverse_list(head):
     prev_node = None
@@ -86,12 +54,12 @@ def reverseList(head):
     if head.next is None:
         return head
 
-    reversed_head = rec_reverse_list(head)
-    #reversed_head = iter_reverse_list(head)
+    #reversed_head = rec_reverse_list(head)
+    reversed_head = iter_reverse_list(head)
     return reversed_head
 
 
-head = make_linked_list(ListNode(val=1))
+head = make_linked_list(ListNode(val=1), range(2, 5))
 print(head)
 
 print(reverseList(head))
