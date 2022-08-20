@@ -34,18 +34,23 @@ def rec_reverse_list(head):
 
 
 def iter_reverse_list(head):
-    prev_node = None
-    cur_node = head
+    # Initialize prev to None(because last ref. of LL is always None)
+    prev = None
 
-    while cur_node:
-        next = cur_node.next
+    while head:
+        # Holder for next values of head for next iter
+        next = head.next
 
-        cur_node.next = prev_node
+        # Reversing by making current first element of head at the start of the LL
+        head.next = prev
 
-        prev_node = cur_node
-        cur_node = next
-
-    return prev_node
+        # Saving currently reversed array to prev for next iter
+        prev = head
+        # Shifting head to its next value
+        head = next
+    # When head is empty we return prev(because initially its saved for the next iter,
+    #   but if there's no next iter, it means that LL is reversed)
+    return prev
 
 
 def reverseList(head):
@@ -59,7 +64,7 @@ def reverseList(head):
     return reversed_head
 
 
-head = make_linked_list(ListNode(val=1), range(2, 5))
+head = make_linked_list(ListNode(val=1), range(2, 6))
 print(head)
 
-print(reverseList(head))
+print(iter_reverse_list(head))

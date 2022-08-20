@@ -34,7 +34,6 @@ if __name__ == '__main__':
     ans3 = TreeNode()
     ans3.insert_multiple([])
 
-    print(invert_tree(root1))
     assert invert_tree(root1), ans1
     assert invert_tree(root2), ans2
     assert invert_tree(root3), ans3

@@ -11,6 +11,9 @@ class TreeNode:
         return f'(val: {self.val}; left: {self.left}; right: {self.right})'
 
     def insert(self, val):
+        if val is None:
+            return
+
         if self.val:
             if val < self.val:
                 if self.left is None:
