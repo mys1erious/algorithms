@@ -20,3 +20,16 @@ def top_k_frequent(nums, k):
         res.append(max_val)
 
     return res
+
+
+if __name__ == '__main__':
+    nums1 = [2,2,3,1,1,1]
+    k1 = 2  # Output: [1,2]
+    nums2 = [1]
+    k2 = 1  # Output: [1]
+    nums3 = [-1, -1]
+    k3 = 1
+
+    assert [1,2] == top_k_frequent(nums1, k1)
+    assert [1] == top_k_frequent(nums2, k2)
+    assert [-1] == top_k_frequent(nums3, k3)
