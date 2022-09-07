@@ -21,7 +21,7 @@ class SetsObject:
         return str(self.__data)
 
 
-def isValidSudoku2(board):
+def isValidSudoku(board):
     n = len(board)
 
     rows = SetsObject()
@@ -71,8 +71,8 @@ if __name__ == '__main__':
         [".", ".", ".", "4", "1", "9", ".", ".", "5"],
         [".", ".", ".", ".", "8", ".", ".", "7", "9"]]
 
-    assert isValidSudoku2(board1) == True
-    assert isValidSudoku2(board2) == False
+    assert isValidSudoku(board1) == True
+    assert isValidSudoku(board2) == False
 
 # My own initial solution
 # def isValidSudoku(board):
