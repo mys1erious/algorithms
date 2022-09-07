@@ -1,47 +1,50 @@
-import collections
+class SetsObject:
+    def __init__(self):
+        self.__data = {}
+
+    def __setitem__(self, key, value):
+        try:
+            self.__data[key].add(value)
+        except KeyError:
+            self.__data[key] = set()
+            self.__data[key].add(value)
+
+    def __getitem__(self, item):
+        try:
+            return self.__data[item]
+        except KeyError:
+            return {}
+
+    def __str__(self):
+        return str(self.__data)
+
+    def __repr__(self):
+        return str(self.__data)
 
 
-def add_to_dict_of_sets(dct, key, val):
-    try:
-        dct[key].add(val)
-    except KeyError:
-        dct[key] = set()
-        dct[key].add(val)
-
-
-def key_in_dict(dct, key):
-    try:
-        dct[key]
-        return True
-    except KeyError:
-        return False
-
-
-def isValidSudoku(board):
+def isValidSudoku2(board):
     n = len(board)
 
-    rows = {}
-    cols = {}
-    squares = {}
+    rows = SetsObject()
+    cols = SetsObject()
+    blocks = SetsObject()
 
     for row in range(n):
         for col in range(n):
-            sq_row = row//3
-            sq_col = col//3
+            block_row = row//3
+            block_col = col//3
 
             val = board[row][col]
             if val == '.':
                 continue
 
-            if (key_in_dict(rows, row) and val in rows[row] or
-                key_in_dict(cols, col) and val in cols[col] or
-                key_in_dict(squares, (sq_row, sq_col)) and val in squares[sq_row, sq_col]
+            if (val in rows[row] or val in cols[col] or val in blocks[block_row, block_col]
             ):
                 return False
 
-            add_to_dict_of_sets(rows, row, val)
-            add_to_dict_of_sets(cols, col, val)
-            add_to_dict_of_sets(squares, (sq_row, sq_col), val)
+            rows[row] = val
+            cols[col] = val
+            blocks[block_row, block_col] = val
 
     return True
 
@@ -69,8 +72,8 @@ if __name__ == '__main__':
         [".", ".", ".", "4", "1", "9", ".", ".", "5"],
         [".", ".", ".", ".", "8", ".", ".", "7", "9"]]
 
-    assert isValidSudoku(board1) == True
-    assert isValidSudoku(board2) == False
+    assert isValidSudoku2(board1) == True
+    assert isValidSudoku2(board2) == False
 
 # My own initial solution
 # def isValidSudoku(board):
