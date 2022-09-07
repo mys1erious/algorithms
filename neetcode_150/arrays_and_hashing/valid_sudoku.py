@@ -3,17 +3,16 @@ class SetsObject:
         self.__data = {}
 
     def __setitem__(self, key, value):
-        try:
-            self.__data[key].add(value)
-        except KeyError:
-            self.__data[key] = set()
-            self.__data[key].add(value)
+        if not isinstance(value, set):
+            raise TypeError(f'Can assign only \'set\' type, given: {type(value)}')
+        self.__data[key] = value
 
     def __getitem__(self, item):
         try:
             return self.__data[item]
         except KeyError:
-            return {}
+            self.__data[item] = set()
+            return self.__data[item]
 
     def __str__(self):
         return str(self.__data)
@@ -42,9 +41,9 @@ def isValidSudoku2(board):
             ):
                 return False
 
-            rows[row] = val
-            cols[col] = val
-            blocks[block_row, block_col] = val
+            rows[row].add(val)
+            cols[col].add(val)
+            blocks[block_row, block_col].add(val)
 
     return True
 
