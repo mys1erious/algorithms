@@ -1,10 +1,18 @@
 def longest_consecutive(nums):
-    # For each val
-    #  Check for left neighbour by using set, if doesnt have left neighbour it means its a start of a seq.
-    #  Check for right neighbour for each start of a seq. vals by using set, do until it doesnt have the r.n.
-    # Return longest seq
-    ...
+    uniques = set(nums)
 
+    max_len = 0
+    for num in uniques:
+        if num - 1 not in uniques:
+            cur_len = 1
+            expected_next = num + 1
+            while expected_next in uniques:
+                cur_len += 1
+                expected_next += 1
+            if cur_len > max_len:
+                max_len = cur_len
+
+    return max_len
 
 
 if __name__ == '__main__':
