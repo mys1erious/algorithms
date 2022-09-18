@@ -24,6 +24,6 @@ if __name__ == '__main__':
     s2 = "()[]{}"
     s3 = "(]"
 
-    assert is_valid(s1) is True
-    assert is_valid(s2) is True
-    assert is_valid(s3) is False
+    assert is_valid(s1) == False
+    assert is_valid(s2) == True
+    assert is_valid(s3) == False
