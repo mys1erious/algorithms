@@ -1,23 +1,17 @@
 def generate_parentheses(n):
-    stack = []
     res = []
 
-    def backtrack(opened, closed):
-        if opened == closed == n:
-            res.append(''.join(stack))
+    def dfs(left, right, s=''):
+        if right > left: return
+        if left == n and right == n:
+            res.append(s)
             return
+        if left < n:
+            dfs(left+1, right, s+'(')
+        if right < n:
+            dfs(left, right+1, s+')')
 
-        if opened < n:
-            stack.append('(')
-            backtrack(opened+1, closed)
-            stack.pop()
-
-        if closed < opened:
-            stack.append(')')
-            backtrack(opened, closed+1)
-            stack.pop()
-
-    backtrack(0, 0)
+    dfs(0, 0)
     return res
 
 
@@ -27,4 +21,4 @@ if __name__ == '__main__':
     n3 = 2  # ["()()", "(())"]
 
     assert generate_parentheses(n1) == ["((()))", "(()())", "(())()", "()(())", "()()()"]
-    assert generate_parentheses(n1) == ["()"]
+    assert generate_parentheses(n2) == ["()"]
