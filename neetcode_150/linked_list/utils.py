@@ -29,4 +29,3 @@ def make_linked_list(head, values=None):
             cur_node = cur_node.next
 
     return head
-
