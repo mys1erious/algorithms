@@ -1,28 +1,27 @@
-def search(nums: list[int], target: int) -> int:
-    left = 0
-    right = len(nums)-1
+def search(nums, target):
+    n = len(nums)
+    lp = 0
+    rp = n
 
-    while left <= right:
-        start_index = (left+right) // 2
-        if nums[start_index] > nums[right]:
-            left = start_index+1
-        elif nums[right] > nums[start_index] > nums[start_index - 1]:
-            right = start_index-1
+    while lp <= rp:
+        mp = (rp+lp) // 2
+
+        if target == nums[mp]:
+            return mp
+
+        # Left side
+        if nums[mp] >= nums[lp]:
+            if target > nums[mp] or target < nums[lp]:
+                lp = mp+1
+            else:
+                rp = mp-1
+
+        # Right side
         else:
-            break
-
-    left = -(len(nums)-start_index)
-    right = len(nums) + left - 1
-    while left <= right:
-        mid = (left + right) // 2
-        if target == nums[mid]:
-            if mid < 0:
-                return len(nums)+mid
-            return mid
-        elif target > nums[mid]:
-            left = mid+1
-        elif target < nums[mid]:
-            right = mid-1
+            if target < nums[mp] or target > nums[rp]:
+                rp = mp-1
+            else:
+                lp = mp+1
 
     return -1
 
@@ -40,5 +39,7 @@ if __name__ == '__main__':
     nums4 = [3, 5, 1]
     target4 = 5
 
-    print(search(nums1, target1))
-    print(search([8, 9, 2, 3, 4], 9))
+    assert search(nums1, target1) == 4
+    assert search(nums2, target2) == -1
+    assert search(nums3, target3) == -1
+    assert search(nums4, target4) == 1

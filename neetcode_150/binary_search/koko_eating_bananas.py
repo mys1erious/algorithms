@@ -10,7 +10,7 @@ def min_eating_speed(piles: list[int], h: int) -> int:
 
     :Desc:
     each hour she eats k bananas from 1 pile
-    if piles[i] < k: she eats all of them and won't eat any more during this hour
+    if piles[i] < k: she eats all of them and won't eat any more during this hour;
     likes to eat slowly, but wants to finish all the bananas before the guard returns
 
     :return: min. k such that she can eat all the bananas in h hours
