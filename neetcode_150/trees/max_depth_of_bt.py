@@ -14,6 +14,24 @@ def example_tree1():
     return root
 
 
+# My initial solution
+def max_depth(root) -> int:
+    max_depth = [0]
+    def get_depth(root, max_depth, depth=0):
+        if depth > max_depth[0]:
+            max_depth[0] = depth
+        if not root:
+            return max_depth[0]
+
+        depth += 1
+        left = get_depth(root.left, max_depth, depth)
+        right = get_depth(root.right, max_depth, depth)
+
+        return max_depth[0]
+
+    return get_depth(root, max_depth)
+
+
 def rec_dfs_max_depth(root):
     if not root:
         return 0
