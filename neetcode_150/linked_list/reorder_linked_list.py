@@ -22,11 +22,11 @@ def reorder_list(head):
     second_list = slow_ind.next
     prev = slow_ind.next = None
     while second_list:
-        tmp = second_list.next
+        next = second_list.next
         second_list.next = prev
 
         prev = second_list
-        second_list = tmp
+        second_list = next
 
     # Merging original and reversed lists
     first_list, second_list = head, prev
