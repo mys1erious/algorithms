@@ -1,7 +1,8 @@
 class ListNode:
-    def __init__(self, val=None, next=None):
+    def __init__(self, val=None, next=None, random=None):
         self.val = val
         self.next = next
+        self.random = random
 
     def __str__(self):
         return f'(val:{self.val}, next:{self.next})'
