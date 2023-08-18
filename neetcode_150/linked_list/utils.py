@@ -20,6 +20,12 @@ class ListNode:
 
         return lst
 
+    def get_tail(self):
+        tail = self
+        while tail and tail.next:
+            tail = tail.next
+        return tail
+
 
 def make_linked_list(head, values=None):
     cur_node = head
