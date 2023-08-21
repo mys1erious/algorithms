@@ -1,6 +1,6 @@
 from typing import Optional
 
-from trees.utils import TreeNode
+from neetcode_150.trees.utils import TreeNode
 
 
 def invert_tree(root: Optional[TreeNode]) -> Optional[TreeNode]:
