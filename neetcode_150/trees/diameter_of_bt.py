@@ -1,31 +1,31 @@
-from trees.utils import TreeNode
+from neetcode_150.trees.utils import TreeNode
 
 
 def bt_diameter(root):
-    res = [0]
+    max_d = [0]
 
     def dfs(root):
         if not root:
-            return -1
+            return 0
 
-        left = dfs(root.left)
-        right = dfs(root.right)
-
-        h = 2 + left + right
-        res[0] = max(res[0], h)
-
-        return 1 + max(left, right)
+        max_d_l = dfs(root.left)
+        max_d_r = dfs(root.right)
+        max_d[0] = max(max_d[0], max_d_l+max_d_r)
+        return 1 + max(max_d_l, max_d_r)
 
     dfs(root)
-    return res[0]
+    return max_d[0]
 
 
 if __name__ == '__main__':
-    root1 = TreeNode()
-    root1.insert_multiple([1, 2, 3, 4, 5])
+    root1 = TreeNode(1)
+    root1.left = TreeNode(2)
+    root1.right = TreeNode(3)
+    root1.left.left = TreeNode(4)
+    root1.left.right = TreeNode(5)
 
-    root2 = TreeNode()
-    root2.insert_multiple([1, 2])
+    root2 = TreeNode(1)
+    root2.left = TreeNode(2)
 
-    assert root1 == 3
-    assert root2 == 1
+    assert bt_diameter(root1) == 3
+    assert bt_diameter(root2) == 1
