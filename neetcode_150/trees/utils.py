@@ -33,3 +33,9 @@ class TreeNode:
             self.val = arr[0]
             [self.insert(val) for val in arr[1:]]
 
+    def get_len(self):
+        if not self:
+            return 0
+        left_length = self.left.get_len() if self.left else 0
+        right_length = self.right.get_len() if self.right else 0
+        return 1 + left_length + right_length
